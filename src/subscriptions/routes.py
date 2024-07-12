@@ -24,7 +24,7 @@ async def subscribe(subscribe_data: SubsciptionModel,
         raise HTTPException(status_code = HTTPStatus.UNAUTHORIZED,
                             detail='Could not validate user')
     
-    new_subscription = await SubscribeService(session).subscribe(user.id, subscribe_data)
+    new_subscription = await SubscribeService(session).subscribe(user.get("id"), subscribe_data)
     return new_subscription
 
 
@@ -37,5 +37,5 @@ async def unsubscripe(subscribe_data: SubsciptionModel,
         raise HTTPException(status_code = HTTPStatus.UNAUTHORIZED,
                             detail='Could not validate user')
 
-    await SubscribeService(session).unsubscribe(user.id, subscribe_data)
+    await SubscribeService(session).unsubscribe(user.get("id"), subscribe_data)
     return {}

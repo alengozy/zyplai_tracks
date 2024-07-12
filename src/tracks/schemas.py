@@ -8,3 +8,9 @@ class TrackCreateModel(BaseModel):
     title: str
     artist_id: int
     album_id: int = None
+
+class TrackImportModel(BaseModel):
+    id: str
+    title: str
+    artist_id: int
+    album_id: int = None

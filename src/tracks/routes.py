@@ -3,7 +3,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from src.db.main import get_session
 from http import HTTPStatus
 
-from zyplai_tracks.src.artists.service import ArtistService
+from src.artists.service import ArtistService
 from .service import TrackService
 from .schemas import TrackCreateModel, TrackResponseModel
 from typing import Annotated
@@ -38,8 +38,9 @@ async def create_track(track_create_data: TrackCreateModel,
     
     new_track = await TrackService(session).create_track(track_create_data)
     subscribed_users = await ArtistService(session).get_subscribed_users(new_track.artist_id)
-    
+    print(subscribed_users)
     for user in subscribed_users:
+        print(user)
         send_email_notification(new_track, user.email)
     return new_track
 

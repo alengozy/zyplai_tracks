@@ -4,7 +4,6 @@ from passlib.context import CryptContext
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class Subscription(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
     user_id: int = Field(default=None, foreign_key="user.id", primary_key=True)
     artist_id: int = Field(default=None, foreign_key="artist.id", primary_key=True)
 

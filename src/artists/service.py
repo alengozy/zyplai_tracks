@@ -51,7 +51,7 @@ class ArtistService:
         await self.session.commit()
 
     async def get_subscribed_users(self, artist_id: int):
-        statement = select(Artist.subscribers).where(Artist.id == artist_id)
+        statement = select(Artist).where(Artist.id == artist_id)
         result = await self.session.exec(statement)
-
-        return result.all()
+        artist = result.first()
+        return await artist.subscribers #couldn't find resources on how to properly load related objects in async sqlalchemy session.

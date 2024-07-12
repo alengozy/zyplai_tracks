@@ -1,8 +1,13 @@
 from src.db.models import Artist
 from pydantic import BaseModel
 
-class ArtistResponseModel(Artist):
+class ArtistResponseModel(BaseModel):
+    id: int
+    name: str
+
+
+class ArtistCreateModel(ArtistResponseModel):
     pass
 
-class ArtistCreateModel(BaseModel):
-    name: str
+class ArtistImportModel(ArtistResponseModel):
+    pass
