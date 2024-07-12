@@ -17,7 +17,7 @@ class ArtistService:
     async def create_artist(self, artist_data: ArtistCreateModel):
         new_artist = Artist(**artist_data.model_dump())
 
-        await self.session.add(new_artist)
+        self.session.add(new_artist)
         await self.session.commit()
     
         return new_artist
@@ -47,5 +47,11 @@ class ArtistService:
         result = await self.session.exec(statement)
         artist = result.first()
         
-        await self.session.delete(artist)
+        self.session.delete(artist)
         await self.session.commit()
+
+    async def get_subscribed_users(self, artist_id: int):
+        statement = select(Artist.subscribers).where(Artist.id == artist_id)
+        result = await self.session.exec(statement)
+
+        return result.all()

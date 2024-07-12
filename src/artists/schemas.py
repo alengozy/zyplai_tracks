@@ -5,5 +5,4 @@ class ArtistResponseModel(Artist):
     pass
 
 class ArtistCreateModel(BaseModel):
-    id: int
     name: str

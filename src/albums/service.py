@@ -18,7 +18,7 @@ class AlbumService:
     async def create_album(self, album_data: AlbumCreateModel):
         new_album = Album(**album_data.model_dump())
 
-        await self.session.add(new_album)
+        self.session.add(new_album)
         await self.session.commit()
     
         return new_album
@@ -48,5 +48,5 @@ class AlbumService:
         result = await self.session.exec(statement)
         album = result.first()
         
-        await self.session.delete(album)
+        self.session.delete(album)
         await self.session.commit()

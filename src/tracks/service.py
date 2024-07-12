@@ -18,7 +18,7 @@ class TrackService:
     async def create_track(self, track_data: TrackCreateModel):
         new_track = Track(**track_data.model_dump())
 
-        await self.session.add(new_track)
+        self.session.add(new_track)
         await self.session.commit()
     
         return new_track
@@ -48,5 +48,5 @@ class TrackService:
         result = await self.session.exec(statement)
         track = result.first()
         
-        await self.session.delete(track)
-        await self.session.commit()
+        self.session.delete(track)
+        await self.session.commit()        

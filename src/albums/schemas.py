@@ -5,6 +5,5 @@ class AlbumResponseModel(Album):
     pass
 
 class AlbumCreateModel(BaseModel):
-    id: int
     title: str
     artist_id: int
