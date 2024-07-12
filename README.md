@@ -9,4 +9,6 @@ Quick Start:
 5. (Optional) Run ```docker-compose exec web alembic revision --autogenerate -m "init"``` to create migrations
 6. Run ```docker-compose exec web alembic upgrade head``` to apply migrations
 
-localhost:8000/docs to test endpoints
+```localhost:8000/docs``` to test endpoints
+
+Includes JWT Authentication, see auth block to create new user, then press the Authenticate button in the top right corner prior to making requests.
